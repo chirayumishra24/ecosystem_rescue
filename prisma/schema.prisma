@@ -1,0 +1,36 @@
+// Prisma schema for Ecosystem Rescue Game Sessions and Team History
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model GameSession {
+  id               String      @id @default(cuid())
+  createdAt        DateTime    @default(now())
+  updatedAt        DateTime    @updatedAt
+  status           String      @default("IN_PROGRESS") // IN_PROGRESS, COMPLETED
+  currentScreen    String      @default("START")
+  ecosystemHealth  Int         @default(20)
+  winningTeam      String?
+  teamExplorersScore Int       @default(0)
+  teamGuardiansScore Int       @default(0)
+  completedMissions String     @default("[]") // JSON stringified array of numbers
+  answersLog       AnswerLog[]
+}
+
+model AnswerLog {
+  id            String      @id @default(cuid())
+  sessionId     String
+  session       GameSession @relation(fields: [sessionId], references: [id], onDelete: Cascade)
+  team          String      // EXPLORERS or GUARDIANS
+  mission       Int
+  questionId    String
+  selectedOption String
+  isCorrect     Boolean
+  energyAwarded Int
+  createdAt     DateTime    @default(now())
+}
