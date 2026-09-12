@@ -7,28 +7,20 @@ import { ArrowRight, ArrowLeft, CheckCircle2, Users, Compass, Shield, Sparkles }
 import { EcoHeroGuide } from "@/components/ui/EcoHeroGuide";
 
 export const TeamSelectScreen: React.FC = () => {
-  const { setScreen, goBack, activeTeam, setActiveTeam } = useGame();
-  const [selectedTeam, setSelectedTeam] = useState<TeamId>(activeTeam);
-  const [confirmed, setConfirmed] = useState<boolean>(false);
-
-  const handleSelect = (team: TeamId) => {
-    setSelectedTeam(team);
-    setActiveTeam(team);
-    setConfirmed(true);
-  };
+  const { setScreen, goBack } = useGame();
 
   return (
     <div className="max-w-6xl mx-auto px-4 py-8 sm:py-12">
       {/* Captain Eco Team Directive */}
       <EcoHeroGuide
         emotion="welcome"
-        missionName="Enlistment Directive"
-        title="Form Your Science Squads: Explorers vs Guardians"
-        objective="Divide your classroom into two collaborative science squads. Both teams will tackle all missions concurrently to earn Eco Energy and restore nature."
+        missionName="Smart Board Arena"
+        title="Two Teams Deployed: Explorers & Guardians"
+        objective="Both teams will play this game together on the smart board. Both squads will tackle all missions concurrently to earn Eco Energy and restore nature."
         steps={[
-          "🔵 Team Explorers (The Wolves): Specialize in discovery, field investigation, and rapid diagnosis.",
-          "🟠 Team Guardians (The Tigers): Specialize in protection, system balance, and sustainable repair.",
-          "Both teams deliberate together in class and submit secret answers on their team's console."
+          "🔵 Team Explorers (The Wolves): Plays on the LEFT side of the smart board.",
+          "🟠 Team Guardians (The Tigers): Plays on the RIGHT side of the smart board.",
+          "Both teams deliberate together in class and lock in answers on their respective consoles."
         ]}
         proTip="Assign roles inside each team: a Chief Biologist, a Microscope Operator, a Scribe, and a Timekeeper!"
       />
@@ -36,32 +28,23 @@ export const TeamSelectScreen: React.FC = () => {
       <div className="text-center mb-10">
         <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full clay-pill bg-white border-2 border-white text-emerald-700 text-xs font-black uppercase tracking-wider mb-3 shadow-sm">
           <Users className="w-4 h-4 text-emerald-500" />
-          <span>Classroom Two-Team Setup</span>
+          <span>Smart Board Two-Team Setup</span>
         </div>
         <h1 className="text-3xl sm:text-5xl font-black text-slate-900">
-          CHOOSE YOUR TEAM
+          TWO-TEAM SMART BOARD ARENA
         </h1>
         <p className="text-sm sm:text-base text-slate-600 font-medium mt-2 max-w-xl mx-auto">
-          Enlist your squad. Both teams will collaborate and compete across the ecosystem missions!
+          Both teams are active and ready to compete and collaborate on this smart board!
         </p>
       </div>
 
-      {/* Main Selection Row */}
+      {/* Main Teams Display Row */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 items-stretch mb-10">
         {/* TEAM EXPLORERS (Blue) */}
-        <div
-          onClick={() => handleSelect("EXPLORERS")}
-          className={`relative cursor-pointer rounded-3xl p-6 sm:p-8 flex flex-col justify-between transition-all duration-300 clay-card ${
-            selectedTeam === "EXPLORERS"
-              ? "border-4 border-blue-400 bg-gradient-to-b from-blue-50/90 via-white to-blue-50 scale-[1.02] shadow-[14px_18px_36px_rgba(37,99,235,0.2)]"
-              : "hover:scale-[1.01] opacity-90"
-          }`}
-        >
-          {selectedTeam === "EXPLORERS" && (
-            <div className="absolute top-4 right-4 bg-blue-500 text-white p-1.5 rounded-full shadow-lg">
-              <CheckCircle2 className="w-5 h-5" />
-            </div>
-          )}
+        <div className="relative rounded-3xl p-6 sm:p-8 flex flex-col justify-between transition-all duration-300 clay-card border-4 border-blue-400 bg-gradient-to-b from-blue-50/90 via-white to-blue-50 shadow-[14px_18px_36px_rgba(37,99,235,0.18)]">
+          <div className="absolute top-4 right-4 bg-blue-500 text-white p-1.5 rounded-full shadow-lg">
+            <CheckCircle2 className="w-5 h-5" />
+          </div>
 
           <div>
             <div className="flex items-center gap-3 mb-4">
@@ -71,7 +54,7 @@ export const TeamSelectScreen: React.FC = () => {
               <div>
                 <h3 className="text-2xl font-black text-slate-900">TEAM EXPLORERS</h3>
                 <p className="text-xs font-black text-blue-600 uppercase tracking-wide">
-                  Team A • Blue
+                  Team A • Left Smart Board Console
                 </p>
               </div>
             </div>
@@ -94,35 +77,16 @@ export const TeamSelectScreen: React.FC = () => {
             </div>
           </div>
 
-          <button
-            onClick={(e) => {
-              e.stopPropagation();
-              handleSelect("EXPLORERS");
-            }}
-            className={`w-full py-3.5 rounded-2xl font-black text-sm uppercase tracking-wider transition-all clay-btn ${
-              selectedTeam === "EXPLORERS"
-                ? "clay-btn-blue text-white"
-                : "clay-btn-white text-blue-700"
-            }`}
-          >
-            {selectedTeam === "EXPLORERS" ? "✓ Team Explorers Enlisted" : "Join Team A"}
-          </button>
+          <div className="w-full py-3.5 rounded-2xl font-black text-sm uppercase tracking-wider text-center clay-btn clay-btn-blue text-white shadow-md">
+            ✓ Team Explorers Ready (Left)
+          </div>
         </div>
 
         {/* TEAM GUARDIANS (Orange) */}
-        <div
-          onClick={() => handleSelect("GUARDIANS")}
-          className={`relative cursor-pointer rounded-3xl p-6 sm:p-8 flex flex-col justify-between transition-all duration-300 clay-card ${
-            selectedTeam === "GUARDIANS"
-              ? "border-4 border-orange-400 bg-gradient-to-b from-orange-50/90 via-white to-orange-50 scale-[1.02] shadow-[14px_18px_36px_rgba(234,88,12,0.2)]"
-              : "hover:scale-[1.01] opacity-90"
-          }`}
-        >
-          {selectedTeam === "GUARDIANS" && (
-            <div className="absolute top-4 right-4 bg-orange-500 text-white p-1.5 rounded-full shadow-lg">
-              <CheckCircle2 className="w-5 h-5" />
-            </div>
-          )}
+        <div className="relative rounded-3xl p-6 sm:p-8 flex flex-col justify-between transition-all duration-300 clay-card border-4 border-orange-400 bg-gradient-to-b from-orange-50/90 via-white to-orange-50 shadow-[14px_18px_36px_rgba(234,88,12,0.18)]">
+          <div className="absolute top-4 right-4 bg-orange-500 text-white p-1.5 rounded-full shadow-lg">
+            <CheckCircle2 className="w-5 h-5" />
+          </div>
 
           <div>
             <div className="flex items-center gap-3 mb-4">
@@ -132,7 +96,7 @@ export const TeamSelectScreen: React.FC = () => {
               <div>
                 <h3 className="text-2xl font-black text-slate-900">TEAM GUARDIANS</h3>
                 <p className="text-xs font-black text-orange-600 uppercase tracking-wide">
-                  Team B • Orange
+                  Team B • Right Smart Board Console
                 </p>
               </div>
             </div>
@@ -155,19 +119,9 @@ export const TeamSelectScreen: React.FC = () => {
             </div>
           </div>
 
-          <button
-            onClick={(e) => {
-              e.stopPropagation();
-              handleSelect("GUARDIANS");
-            }}
-            className={`w-full py-3.5 rounded-2xl font-black text-sm uppercase tracking-wider transition-all clay-btn ${
-              selectedTeam === "GUARDIANS"
-                ? "clay-btn-orange text-white"
-                : "clay-btn-white text-orange-700"
-            }`}
-          >
-            {selectedTeam === "GUARDIANS" ? "✓ Team Guardians Enlisted" : "Join Team B"}
-          </button>
+          <div className="w-full py-3.5 rounded-2xl font-black text-sm uppercase tracking-wider text-center clay-btn clay-btn-orange text-white shadow-md">
+            ✓ Team Guardians Ready (Right)
+          </div>
         </div>
 
         {/* OUR MISSION Clipboard Card */}
@@ -180,27 +134,27 @@ export const TeamSelectScreen: React.FC = () => {
             <div className="flex items-center justify-center gap-2 mb-4">
               <span className="text-xl">📋</span>
               <h3 className="text-2xl font-black tracking-tight text-stone-900 uppercase">
-                OUR MISSION
+                SMART BOARD SETUP
               </h3>
             </div>
 
             <div className="space-y-4 text-stone-800 font-medium text-sm leading-relaxed">
               <p>
-                The ecosystem is in trouble. Vital decomposers and microbial networks have diminished, breaking critical links in food chains and food webs.
+                The ecosystem is in trouble. Both teams will play simultaneously on this smart board across all 5 interactive missions!
               </p>
               <p>
-                Use your knowledge about microorganisms to solve interactive challenges, earn Eco Energy, and restore the natural balance.
+                No need to choose a squad — both Team Explorers and Team Guardians are already locked in and will earn Eco Energy side-by-side.
               </p>
               <div className="p-3 bg-amber-200/60 rounded-2xl border border-amber-300 font-bold text-xs text-stone-900 flex items-center gap-2">
                 <Sparkles className="w-4 h-4 text-amber-700 flex-shrink-0" />
-                <span>Classroom tip: Teams can alternate turns each mission or answer collaboratively!</span>
+                <span>Smart Board ready: Dual consoles enable simultaneous classroom play!</span>
               </div>
             </div>
           </div>
 
           <div className="pt-6 border-t border-amber-300/80 text-center">
             <p className="font-serif italic text-base text-stone-700 font-bold">
-              “Are you ready to make a difference?” 🍃
+              “Both teams ready to save the planet!” 🍃
             </p>
           </div>
         </div>
@@ -209,10 +163,8 @@ export const TeamSelectScreen: React.FC = () => {
       {/* Confirmation & Continue */}
       <div className="flex flex-col items-center gap-3">
         <div className="text-emerald-700 text-sm font-black uppercase tracking-wider flex items-center gap-2">
-          <CheckCircle2 className="w-4 h-4 text-emerald-600" />
-          <span>
-            {selectedTeam === "EXPLORERS" ? "TEAM EXPLORERS READY!" : "TEAM GUARDIANS READY!"}
-          </span>
+          <CheckCircle2 className="w-5 h-5 text-emerald-600" />
+          <span>BOTH TEAMS ENLISTED & READY FOR SMART BOARD PLAY!</span>
         </div>
 
         <div className="flex flex-wrap items-center justify-center gap-4">

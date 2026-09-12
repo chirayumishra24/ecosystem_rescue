@@ -12,6 +12,7 @@ export const Navbar: React.FC = () => {
     canGoBack,
     activeTeam,
     switchTeam,
+    showTurnAnnouncement,
     teams,
     ecosystemHealth,
     scorePop,
@@ -170,12 +171,12 @@ export const Navbar: React.FC = () => {
         <div className="flex items-center gap-1.5 sm:gap-3">
           {/* Team Explorers */}
           <button
-            onClick={switchTeam}
-            title="Click to toggle active team turn"
-            className={`relative flex items-center gap-1.5 sm:gap-2 px-2.5 sm:px-3.5 2xl:px-5 py-1.5 sm:py-2 2xl:py-3 rounded-2xl transition-all touch-manipulation ${
+            onClick={() => showTurnAnnouncement("EXPLORERS")}
+            title="Click to announce Team A Turn"
+            className={`relative flex items-center gap-1.5 sm:gap-2 px-2.5 sm:px-3.5 2xl:px-5 py-1.5 sm:py-2 2xl:py-3 rounded-2xl transition-all cursor-pointer touch-manipulation active:scale-95 ${
               activeTeam === "EXPLORERS"
-                ? "bg-gradient-to-br from-blue-50 to-blue-100 border-2 border-blue-400 shadow-[6px_8px_18px_rgba(37,99,235,0.2),inset_2px_2px_4px_rgba(255,255,255,0.9)] scale-105"
-                : "bg-white/80 border-2 border-slate-100 opacity-75 hover:opacity-100 shadow-sm"
+                ? "bg-gradient-to-br from-blue-100 to-sky-100 border-2 border-blue-500 shadow-[0_4px_16px_rgba(37,99,235,0.35)] ring-2 ring-blue-400"
+                : "bg-gradient-to-br from-blue-50 to-blue-100 border-2 border-blue-400 shadow-[4px_6px_14px_rgba(37,99,235,0.15)] opacity-90 hover:opacity-100"
             }`}
           >
             <div className="w-7 h-7 sm:w-8 sm:h-8 2xl:w-11 2xl:h-11 rounded-xl bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center text-xs sm:text-sm 2xl:text-xl font-bold text-white shadow-md shadow-blue-500/30">
@@ -183,9 +184,11 @@ export const Navbar: React.FC = () => {
             </div>
             <div className="text-left">
               <div className="text-[9px] sm:text-[10px] 2xl:text-xs uppercase font-black text-blue-700 flex items-center gap-1">
-                <span>Explorers</span>
+                <span>Team A • Explorers</span>
                 {activeTeam === "EXPLORERS" && (
-                  <span className="w-1.5 h-1.5 rounded-full bg-blue-500 animate-pulse" />
+                  <span className="bg-blue-600 text-white text-[8px] sm:text-[9px] font-black px-1.5 py-0.2 rounded-full uppercase animate-pulse">
+                    TURN
+                  </span>
                 )}
               </div>
               <div className="flex items-center gap-1 text-xs sm:text-base 2xl:text-xl font-black text-slate-800">
@@ -205,19 +208,23 @@ export const Navbar: React.FC = () => {
             )}
           </button>
 
-          {/* VS Divider */}
-          <span className="text-[10px] sm:text-[11px] 2xl:text-xs font-black text-slate-400 hidden sm:inline">
-            VS
-          </span>
+          {/* VS Divider with quick switch */}
+          <button
+            onClick={switchTeam}
+            title="Switch Active Team Turn"
+            className="px-2 py-1 rounded-xl clay-card text-[10px] sm:text-[11px] 2xl:text-xs font-black text-slate-500 hover:text-slate-800 active:scale-95 transition"
+          >
+            ⇄ VS
+          </button>
 
           {/* Team Guardians */}
           <button
-            onClick={switchTeam}
-            title="Click to toggle active team turn"
-            className={`relative flex items-center gap-1.5 sm:gap-2 px-2.5 sm:px-3.5 2xl:px-5 py-1.5 sm:py-2 2xl:py-3 rounded-2xl transition-all touch-manipulation ${
+            onClick={() => showTurnAnnouncement("GUARDIANS")}
+            title="Click to announce Team B Turn"
+            className={`relative flex items-center gap-1.5 sm:gap-2 px-2.5 sm:px-3.5 2xl:px-5 py-1.5 sm:py-2 2xl:py-3 rounded-2xl transition-all cursor-pointer touch-manipulation active:scale-95 ${
               activeTeam === "GUARDIANS"
-                ? "bg-gradient-to-br from-orange-50 to-orange-100 border-2 border-orange-400 shadow-[6px_8px_18px_rgba(234,88,12,0.2),inset_2px_2px_4px_rgba(255,255,255,0.9)] scale-105"
-                : "bg-white/80 border-2 border-slate-100 opacity-75 hover:opacity-100 shadow-sm"
+                ? "bg-gradient-to-br from-orange-100 to-amber-100 border-2 border-orange-500 shadow-[0_4px_16px_rgba(234,88,12,0.35)] ring-2 ring-orange-400"
+                : "bg-gradient-to-br from-orange-50 to-orange-100 border-2 border-orange-400 shadow-[4px_6px_14px_rgba(234,88,12,0.15)] opacity-90 hover:opacity-100"
             }`}
           >
             <div className="w-7 h-7 sm:w-8 sm:h-8 2xl:w-11 2xl:h-11 rounded-xl bg-gradient-to-br from-orange-500 to-orange-600 flex items-center justify-center text-xs sm:text-sm 2xl:text-xl font-bold text-white shadow-md shadow-orange-500/30">
@@ -225,9 +232,11 @@ export const Navbar: React.FC = () => {
             </div>
             <div className="text-left">
               <div className="text-[9px] sm:text-[10px] 2xl:text-xs uppercase font-black text-orange-700 flex items-center gap-1">
-                <span>Guardians</span>
+                <span>Team B • Guardians</span>
                 {activeTeam === "GUARDIANS" && (
-                  <span className="w-1.5 h-1.5 rounded-full bg-orange-500 animate-pulse" />
+                  <span className="bg-orange-600 text-white text-[8px] sm:text-[9px] font-black px-1.5 py-0.2 rounded-full uppercase animate-pulse">
+                    TURN
+                  </span>
                 )}
               </div>
               <div className="flex items-center gap-1 text-xs sm:text-base 2xl:text-xl font-black text-slate-800">

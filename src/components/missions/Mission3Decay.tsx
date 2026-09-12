@@ -9,7 +9,7 @@ import { Sliders, ArrowRight, Check, Sparkles, RefreshCw, Layers, Users, Zap } f
 import { EcoHeroGuide } from "@/components/ui/EcoHeroGuide";
 
 export const Mission3Decay: React.FC = () => {
-  const { setScreen, addScore, addHealth, completeMission } = useGame();
+  const { setScreen, addScore, addHealth, completeMission, showTurnAnnouncement } = useGame();
 
   // Slider day state: 0 (Day 1), 1 (Day 3), 2 (Day 7), 3 (Day 14), 4 (Day 30)
   const [sliderIndex, setSliderIndex] = useState<number>(0);
@@ -404,27 +404,29 @@ export const Mission3Decay: React.FC = () => {
                 onClick={() => {
                   sound.playClick();
                   setActiveCycleTeam("EXPLORERS");
+                  showTurnAnnouncement("EXPLORERS");
                 }}
-                className={`px-3 py-1.5 rounded-xl font-black text-xs uppercase ${
+                className={`px-3 py-1.5 rounded-xl font-black text-xs uppercase cursor-pointer ${
                   activeCycleTeam === "EXPLORERS"
                     ? "clay-btn-sky text-white ring-2 ring-sky-400"
-                    : "clay-card text-slate-700"
+                    : "clay-card text-slate-700 hover:bg-slate-100"
                 }`}
               >
-                🐺 Explorers ({explorerCycle.length}/5)
+                🐺 Explorers (Team A) ({explorerCycle.length}/5)
               </button>
               <button
                 onClick={() => {
                   sound.playClick();
                   setActiveCycleTeam("GUARDIANS");
+                  showTurnAnnouncement("GUARDIANS");
                 }}
-                className={`px-3 py-1.5 rounded-xl font-black text-xs uppercase ${
+                className={`px-3 py-1.5 rounded-xl font-black text-xs uppercase cursor-pointer ${
                   activeCycleTeam === "GUARDIANS"
                     ? "clay-btn-amber text-white ring-2 ring-amber-400"
-                    : "clay-card text-slate-700"
+                    : "clay-card text-slate-700 hover:bg-slate-100"
                 }`}
               >
-                🐯 Guardians ({guardianCycle.length}/5)
+                🐯 Guardians (Team B) ({guardianCycle.length}/5)
               </button>
             </div>
           </div>

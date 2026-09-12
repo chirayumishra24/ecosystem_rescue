@@ -9,7 +9,7 @@ import { Check, RefreshCw, Zap, Sparkles, Utensils, Users } from "lucide-react";
 import { EcoHeroGuide } from "@/components/ui/EcoHeroGuide";
 
 export const Mission5FoodLab: React.FC = () => {
-  const { setScreen, addScore, addHealth, completeMission } = useGame();
+  const { setScreen, addScore, addHealth, completeMission, showTurnAnnouncement } = useGame();
 
   const [selectedFoodId, setSelectedFoodId] = useState<string>("milk");
 
@@ -188,24 +188,30 @@ export const Mission5FoodLab: React.FC = () => {
           <div className="flex items-center gap-2">
             <span className="text-xs font-black text-slate-600">Active Team Assigning:</span>
             <button
-              onClick={() => setActivePickerTeam("EXPLORERS")}
-              className={`px-3 py-1.5 rounded-xl font-black text-xs transition-all ${
+              onClick={() => {
+                setActivePickerTeam("EXPLORERS");
+                showTurnAnnouncement("EXPLORERS");
+              }}
+              className={`px-3 py-1.5 rounded-xl font-black text-xs transition-all cursor-pointer ${
                 activePickerTeam === "EXPLORERS"
                   ? "clay-btn-sky text-white ring-2 ring-sky-400"
                   : "clay-card text-slate-700 hover:bg-slate-100"
               }`}
             >
-              🐺 Explorers
+              🐺 Explorers (Team A)
             </button>
             <button
-              onClick={() => setActivePickerTeam("GUARDIANS")}
-              className={`px-3 py-1.5 rounded-xl font-black text-xs transition-all ${
+              onClick={() => {
+                setActivePickerTeam("GUARDIANS");
+                showTurnAnnouncement("GUARDIANS");
+              }}
+              className={`px-3 py-1.5 rounded-xl font-black text-xs transition-all cursor-pointer ${
                 activePickerTeam === "GUARDIANS"
                   ? "clay-btn-amber text-white ring-2 ring-amber-400"
                   : "clay-card text-slate-700 hover:bg-slate-100"
               }`}
             >
-              🐯 Guardians
+              🐯 Guardians (Team B)
             </button>
           </div>
         </div>

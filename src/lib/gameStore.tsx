@@ -20,6 +20,8 @@ export interface GameContextType {
   completeMission: (missionNumber: number) => void;
   isMissionUnlocked: (missionNumber: number) => boolean;
   scorePop: { team: TeamId; amount: number; key: number } | null;
+  turnAnnouncement: { team: TeamId; key: number } | null;
+  showTurnAnnouncement: (team: TeamId) => void;
   soundEnabled: boolean;
   toggleSound: () => void;
   resetGame: () => void;
@@ -58,6 +60,7 @@ export const GameProvider: React.FC<{ children: React.ReactNode }> = ({ children
   const [ecosystemHealth, setEcosystemHealth] = useState<number>(20);
   const [completedMissions, setCompletedMissions] = useState<number[]>([]);
   const [scorePop, setScorePop] = useState<{ team: TeamId; amount: number; key: number } | null>(null);
+  const [turnAnnouncement, setTurnAnnouncement] = useState<{ team: TeamId; key: number } | null>(null);
   const [soundEnabled, setSoundEnabled] = useState<boolean>(true);
 
   useEffect(() => {
@@ -111,8 +114,18 @@ export const GameProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
   const canGoBack = currentScreen !== "START" && (screenHistory.length > 0 || defaultFlow.indexOf(currentScreen) > 0);
 
+  const showTurnAnnouncement = (team: TeamId) => {
+    setActiveTeam(team);
+    sound.playEnergyTick();
+    setTurnAnnouncement({ team, key: Date.now() });
+    setTimeout(() => {
+      setTurnAnnouncement((current) => (current?.team === team ? null : current));
+    }, 1800);
+  };
+
   const switchTeam = () => {
-    setActiveTeam((prev) => (prev === "EXPLORERS" ? "GUARDIANS" : "EXPLORERS"));
+    const nextTeam: TeamId = activeTeam === "EXPLORERS" ? "GUARDIANS" : "EXPLORERS";
+    showTurnAnnouncement(nextTeam);
   };
 
   const addScore = (amount: number, teamOverride?: TeamId) => {
@@ -184,6 +197,8 @@ export const GameProvider: React.FC<{ children: React.ReactNode }> = ({ children
         completeMission,
         isMissionUnlocked,
         scorePop,
+        turnAnnouncement,
+        showTurnAnnouncement,
         soundEnabled,
         toggleSound,
         resetGame,

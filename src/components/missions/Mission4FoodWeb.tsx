@@ -106,7 +106,8 @@ export const Mission4FoodWeb: React.FC = () => {
     if (validCount >= 7) {
       sound.playCorrect();
       setWebVerified(true);
-      addScore(200);
+      addScore(200, "EXPLORERS");
+      addScore(200, "GUARDIANS");
       addHealth(12);
       setModalIsCorrect(true);
       setModalExplanation(

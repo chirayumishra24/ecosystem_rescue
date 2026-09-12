@@ -10,7 +10,7 @@ import { ArrowRight, Check, RefreshCw, Zap, AlertCircle, HelpCircle, Users } fro
 import { EcoHeroGuide } from "@/components/ui/EcoHeroGuide";
 
 export const Mission2FoodChain: React.FC = () => {
-  const { setScreen, addScore, addHealth, completeMission } = useGame();
+  const { setScreen, addScore, addHealth, completeMission, showTurnAnnouncement } = useGame();
 
   // Phase toggle
   const [phase, setPhase] = useState<"BUILDER" | "WHAT_IF">("BUILDER");
@@ -272,14 +272,15 @@ export const Mission2FoodChain: React.FC = () => {
                 onClick={() => {
                   sound.playClick();
                   setActiveBuilderTeam("EXPLORERS");
+                  showTurnAnnouncement("EXPLORERS");
                 }}
-                className={`px-4 py-2 rounded-2xl font-black text-xs uppercase tracking-wider flex items-center gap-2 transition-all ${
+                className={`px-4 py-2 rounded-2xl font-black text-xs uppercase tracking-wider flex items-center gap-2 transition-all cursor-pointer ${
                   activeBuilderTeam === "EXPLORERS"
                     ? "clay-btn-sky text-white ring-2 ring-sky-400"
                     : "clay-card text-slate-700 hover:bg-slate-100"
                 }`}
               >
-                <span>🐺 Explorers Rack</span>
+                <span>🐺 Explorers Rack (Team A)</span>
                 <span className="text-[10px] bg-sky-200 text-sky-900 px-2 py-0.5 rounded-full font-black">
                   {explorerSlots.filter(Boolean).length}/4
                 </span>
@@ -289,14 +290,15 @@ export const Mission2FoodChain: React.FC = () => {
                 onClick={() => {
                   sound.playClick();
                   setActiveBuilderTeam("GUARDIANS");
+                  showTurnAnnouncement("GUARDIANS");
                 }}
-                className={`px-4 py-2 rounded-2xl font-black text-xs uppercase tracking-wider flex items-center gap-2 transition-all ${
+                className={`px-4 py-2 rounded-2xl font-black text-xs uppercase tracking-wider flex items-center gap-2 transition-all cursor-pointer ${
                   activeBuilderTeam === "GUARDIANS"
                     ? "clay-btn-amber text-white ring-2 ring-amber-400"
                     : "clay-card text-slate-700 hover:bg-slate-100"
                 }`}
               >
-                <span>🐯 Guardians Rack</span>
+                <span>🐯 Guardians Rack (Team B)</span>
                 <span className="text-[10px] bg-amber-200 text-amber-900 px-2 py-0.5 rounded-full font-black">
                   {guardianSlots.filter(Boolean).length}/4
                 </span>
