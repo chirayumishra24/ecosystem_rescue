@@ -6,6 +6,7 @@ import { RISK_ROUND_DILEMMAS } from "@/lib/questionsData";
 import { FeedbackModal, TeamOutcome } from "../ui/Modal";
 import { sound } from "@/lib/audio";
 import { Target, Zap, AlertTriangle, ArrowRight, ShieldCheck, Users } from "lucide-react";
+import { EcoHeroGuide } from "@/components/ui/EcoHeroGuide";
 
 export const RiskRound: React.FC = () => {
   const { setScreen, addScore, addHealth, teams } = useGame();
@@ -122,6 +123,21 @@ export const RiskRound: React.FC = () => {
           </div>
         </div>
       </div>
+
+      {/* Captain Eco Directive */}
+      <EcoHeroGuide
+        emotion="tactical"
+        missionName="Strategic Wager Directive"
+        title="High-Stakes Conservation Decisions & Energy Wagers"
+        objective="True conservationists must make tough ecological calls under pressure! Wager your accumulated Eco Energy on ecological interventions. Right answers double your bet!"
+        steps={[
+          "Each team selects their wager amount independently: 10⚡ (Safe), 25⚡ (Balanced), or 50⚡ (High Risk/Reward).",
+          "Read the conservation dilemma: invasive biological control, algal bloom bioremediation, or chemical fertilizers.",
+          "Deliberate with your teammates and choose your intervention secretly [LOCKED 🔒].",
+          "Hit [REVEAL INTERVENTIONS]: A correct answer doubles your stake; an incorrect choice deducts it!"
+        ]}
+        proTip="Think through unintended secondary consequences—introducing non-native predators to fight pests can backfire on native wildlife!"
+      />
 
       {/* Dilemma Scenario Header */}
       <div className="clay-card p-5 sm:p-7 mb-6">

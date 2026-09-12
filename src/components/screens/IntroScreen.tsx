@@ -4,12 +4,26 @@ import React from "react";
 import { useGame } from "@/lib/gameStore";
 import { BiosphereCanvas } from "../3d/BiosphereCanvas";
 import { AlertCircle, ArrowRight, ArrowLeft, ShieldAlert, Sparkles, HeartPulse } from "lucide-react";
+import { EcoHeroGuide } from "@/components/ui/EcoHeroGuide";
 
 export const IntroScreen: React.FC = () => {
   const { setScreen, goBack, ecosystemHealth } = useGame();
 
   return (
     <div className="max-w-5xl mx-auto px-4 py-8 sm:py-12 flex flex-col items-center">
+      {/* Captain Eco Crisis Briefing */}
+      <EcoHeroGuide
+        emotion="briefing"
+        missionName="Mission Briefing"
+        title="Emergency Planet Briefing: The Biosphere is Collapsing!"
+        objective="Microscopic lifeforms, decomposers, and food webs are falling out of equilibrium. Without rapid scientific intervention from two coordinated teams, the entire biosphere will collapse."
+        steps={[
+          "Observe the living 3D simulation below: health is degraded to a critical 20%.",
+          "Both teams must investigate microscopic life, food chains, webs, and decay.",
+          "Every puzzle and scenario solved revitalizes vital ecological links!"
+        ]}
+        proTip="Watch the 3D world heal: as your teams earn Eco Energy, the soil blooms green, waters turn azure, and life returns!"
+      />
       {/* Warning Header */}
       <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full clay-pill bg-rose-50/90 border-2 border-rose-200 text-rose-700 text-xs sm:text-sm font-black uppercase tracking-wider mb-4 animate-pulse shadow-sm">
         <AlertCircle className="w-4 h-4 text-rose-500" />

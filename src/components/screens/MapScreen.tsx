@@ -4,6 +4,7 @@ import React from "react";
 import { useGame } from "@/lib/gameStore";
 import { ScreenType } from "@/lib/types";
 import { Check, Lock, MapPin, Trophy, Sparkles, Compass, Shield, ArrowLeft } from "lucide-react";
+import { EcoHeroGuide } from "@/components/ui/EcoHeroGuide";
 
 export const MapScreen: React.FC = () => {
   const {
@@ -108,6 +109,21 @@ export const MapScreen: React.FC = () => {
           </p>
         </div>
       </div>
+
+      {/* Captain Eco Map Guide Directive */}
+      <EcoHeroGuide
+        emotion="briefing"
+        missionName="Expedition Navigation"
+        title="Expedition Sector Map & Progress Path"
+        objective="Deploy your science teams across 5 distinct ecosystem biomes. Complete missions sequentially to unlock high-stakes challenges and restore the living world."
+        steps={[
+          "Missions unlock sequentially as your squads restore balance.",
+          "Both teams compete simultaneously in every unlocked sector.",
+          "Track unlocked status and current Biosphere health meter at any time."
+        ]}
+        proTip="Click on any unlocked mission card below to launch straight into the field investigation!"
+        defaultExpanded={false}
+      />
 
       {/* Interactive Path Trail Layout */}
       <div className="relative clay-card p-6 sm:p-10 overflow-hidden mb-8">

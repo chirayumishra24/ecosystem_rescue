@@ -4,6 +4,7 @@ import React, { useEffect } from "react";
 import { useGame } from "@/lib/gameStore";
 import confetti from "canvas-confetti";
 import { Trophy, ArrowRight, Zap, Sparkles, Award } from "lucide-react";
+import { EcoHeroGuide } from "@/components/ui/EcoHeroGuide";
 
 export const FinalResultsScreen: React.FC = () => {
   const { setScreen, teams, ecosystemHealth } = useGame();
@@ -64,6 +65,20 @@ export const FinalResultsScreen: React.FC = () => {
             : `“Congratulations ${winner.name}! You scored the most Eco Energy and saved Earth!” 🌿`}
         </p>
       </div>
+
+      {/* Captain Eco Victory Celebration Directive */}
+      <EcoHeroGuide
+        emotion="celebrate"
+        missionName="Planetary Commendation"
+        title="Mission Accomplished: Planetary Restoration Triumph!"
+        objective="Captain Eco and the entire biosphere salute our young environmental scientists! Thanks to your mastery of microbes, food chains, webs, and nutrient decay, our planet's health has been saved!"
+        steps={[
+          "Compare the final team scores and speed bonus tallies below.",
+          "Award the Grand Classroom Trophy to the high-scoring squad!",
+          "Review the Scientific Key Takeaways to solidify all core biology concepts learned today."
+        ]}
+        proTip="Remember: Even the smallest unseen microbes have colossal powers to sustain or destroy life on Earth—protect our micro-allies!"
+      />
 
       {/* Team Comparison Duel Cards */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full max-w-4xl mb-10">

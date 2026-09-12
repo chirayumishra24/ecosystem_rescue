@@ -6,6 +6,7 @@ import { DECAY_TIMELINE, NUTRIENT_CYCLE_STEPS } from "@/lib/questionsData";
 import { FeedbackModal, TeamOutcome } from "../ui/Modal";
 import { sound } from "@/lib/audio";
 import { Sliders, ArrowRight, Check, Sparkles, RefreshCw, Layers, Users, Zap } from "lucide-react";
+import { EcoHeroGuide } from "@/components/ui/EcoHeroGuide";
 
 export const Mission3Decay: React.FC = () => {
   const { setScreen, addScore, addHealth, completeMission } = useGame();
@@ -179,6 +180,37 @@ export const Mission3Decay: React.FC = () => {
           </button>
         )}
       </div>
+
+      {/* Captain Eco Directive */}
+      {phase === "TIMELINE" ? (
+        <EcoHeroGuide
+          emotion="detective"
+          missionName="Mission 3 • Phase 1 Directive"
+          title="Decomposition Forensic Lab & Moisture Factors"
+          objective="Explore the 30-day decomposition time-lapse of organic matter. Uncover how bacteria, fungi, moisture, and warmth convert fallen plant material into mineral-rich humus."
+          steps={[
+            "Slide the 30-day slider from Day 1 to Day 30 to watch mold and bacteria colonies multiply.",
+            "Analyze the biological breakdown and microbial activity at each stage.",
+            "Both teams choose the correct primary decomposer principle secretly on your consoles.",
+            "Lock in your answer secretly! The quickest correct team scores a +25⚡ Speed Bonus!"
+          ]}
+          proTip="Without decomposers, dead leaves and branches would pile up endlessly and starve living trees of essential nitrogen and minerals!"
+        />
+      ) : (
+        <EcoHeroGuide
+          emotion="recycling"
+          missionName="Mission 3 • Phase 2 Directive"
+          title="The 5-Step Continuous Nutrient Rebirth Cycle"
+          objective="Nutrients are never lost—they are endlessly recycled! Sequence the 5 fundamental steps of the cycle that connects life, death, and regrowth."
+          steps={[
+            "Switch between Team Explorers and Team Guardians to build each team's 5-stage loop.",
+            "Click steps from the bank in chronological order from living plants to soil absorption.",
+            "Both teams test their cycles independently to verify the nutrient pathway.",
+            "Completing the loop restores critical soil nutrients and energizes the biosphere!"
+          ]}
+          proTip="Plants absorb minerals through root hair cells, animals consume plants, organisms die, decomposers digest, and minerals return to the soil!"
+        />
+      )}
 
       {phase === "TIMELINE" ? (
         /* PHASE 1: Decay Timeline Slider & Biological Breakdown */

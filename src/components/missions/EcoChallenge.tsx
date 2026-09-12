@@ -5,6 +5,7 @@ import { useGame } from "@/lib/gameStore";
 import { ECO_CHALLENGE_QUESTIONS } from "@/lib/questionsData";
 import { sound } from "@/lib/audio";
 import { Zap, Timer, ArrowRight, CheckCircle2, XCircle, Award, Users } from "lucide-react";
+import { EcoHeroGuide } from "@/components/ui/EcoHeroGuide";
 
 export const EcoChallenge: React.FC = () => {
   const { setScreen, addScore, addHealth, teams } = useGame();
@@ -167,6 +168,21 @@ export const EcoChallenge: React.FC = () => {
           </div>
         </div>
       </div>
+
+      {/* Captain Eco Blitz Directive */}
+      <EcoHeroGuide
+        emotion="blitz"
+        missionName="Speed Challenge Directive"
+        title="60-Second Head-to-Head Eco Lightning Blitz"
+        objective="Test your lightning-fast scientific recall! Race through rapid-fire questions on bacteria, decomposers, energy transfer, and ecology before time runs out."
+        steps={[
+          "The 60-second countdown begins as soon as you hit [START BLITZ BATTLE].",
+          "Both teams compete on the exact same question at the same time.",
+          "Hit your team's option immediately—the faster team scores a +15⚡ Speed Bonus!",
+          "Incorrect answers deduct 0 points, so trust your scientific intuition and buzz fast!"
+        ]}
+        proTip="Keep your eyes on your team's console and be quick on the buzzer—seconds matter in a photo finish!"
+      />
 
       {!isRunning && !challengeFinished ? (
         /* Pre-game Ready Card */

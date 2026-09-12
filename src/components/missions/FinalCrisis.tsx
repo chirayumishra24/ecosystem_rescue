@@ -7,6 +7,7 @@ import { BiosphereCanvas } from "../3d/BiosphereCanvas";
 import { sound } from "@/lib/audio";
 import confetti from "canvas-confetti";
 import { AlertCircle, CheckCircle2, ShieldCheck, Sparkles, ArrowRight, Zap } from "lucide-react";
+import { EcoHeroGuide } from "@/components/ui/EcoHeroGuide";
 
 export const FinalCrisis: React.FC = () => {
   const { setScreen, ecosystemHealth, addHealth, addScore, completeMission } = useGame();
@@ -89,6 +90,21 @@ export const FinalCrisis: React.FC = () => {
         </div>
       </div>
 
+      {/* Captain Eco Directive */}
+      <EcoHeroGuide
+        emotion="crisis"
+        missionName="Emergency Protocol Directive"
+        title="Final Planetary Rescue & Biosphere Restoration"
+        objective="This is the decisive moment! Deploy targeted ecological restorations across all 4 key biomes: detoxify waterways, reintroduce apex predators, reseed soil bacteria, and balance consumer populations."
+        steps={[
+          "Both teams unite your accumulated scientific knowledge for collaborative planet rescue.",
+          "Click each Restorative Intervention to implement evidence-based ecological solutions.",
+          "Every successful restoration awards +100⚡ Eco Energy to both teams simultaneously!",
+          "Achieve 100% Biosphere Health to trigger the planetary victory celebration!"
+        ]}
+        proTip="Watch the 3D living biosphere in real time: as health reaches 100%, dead grey soil transforms into lush greenery and sparkling rivers!"
+      />
+
       {/* Main Grid: 3D Biosphere Canvas + 5 Restorative Tasks */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start mb-8">
         {/* Left: 3D Interactive Restoring Biosphere (7 Cols) */}
@@ -100,7 +116,7 @@ export const FinalCrisis: React.FC = () => {
             </span>
           </div>
 
-          <div className="clay-inset p-2 rounded-3xl bg-slate-900/90 shadow-inner w-full flex justify-center">
+          <div className="clay-card p-2 rounded-3xl bg-white/80 shadow-inner w-full flex justify-center border-2 border-white">
             <BiosphereCanvas health={ecosystemHealth} />
           </div>
 

@@ -7,6 +7,7 @@ import { MicroscopeCanvas } from "../3d/MicroscopeCanvas";
 import { FeedbackModal, TeamOutcome } from "../ui/Modal";
 import { sound } from "@/lib/audio";
 import { Sliders, Sun, Search, Sparkles, Check, HelpCircle, ArrowRight, Zap, Users } from "lucide-react";
+import { EcoHeroGuide } from "@/components/ui/EcoHeroGuide";
 
 export const Mission1Microbe: React.FC = () => {
   const { setScreen, addScore, addHealth, completeMission } = useGame();
@@ -141,6 +142,21 @@ export const Mission1Microbe: React.FC = () => {
           ))}
         </div>
       </div>
+
+      {/* Captain Eco Directive Banner */}
+      <EcoHeroGuide
+        emotion="investigate"
+        missionName="Mission 1 Directive"
+        title="Microscopic Specimen Identification & Forensic Investigation"
+        objective="Inspect the living microscopic specimen under 1000× magnification. Adjust Fine Focus and Light Intensity dials to reveal cell walls, flagella, or spores, then classify the microbe."
+        steps={[
+          "Adjust Focus and Light sliders until the cellular organism resolves sharply.",
+          "Examine cell morphology: rod-shaped bacilli, branched fungal hyphae, amoeboid blobs, or photosynthetic algae.",
+          "Both teams deliberate privately and select your classification on your team console.",
+          "Hit [CONFIRM & LOCK IN 🔒] secretly. Fastest correct lock-in claims the +25⚡ Speed Bonus!"
+        ]}
+        proTip="Bacteria are single-celled with no nucleus; fungi form branching thread-like hyphae; algae have green photosynthetic pigments; protozoa move actively like tiny animals!"
+      />
 
       {/* Main Workspace: Microscope View + Investigation Questions */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">

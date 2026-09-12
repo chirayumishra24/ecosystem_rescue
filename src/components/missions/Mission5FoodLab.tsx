@@ -6,6 +6,7 @@ import { FOOD_LAB_ITEMS } from "@/lib/questionsData";
 import { FeedbackModal, TeamOutcome } from "../ui/Modal";
 import { sound } from "@/lib/audio";
 import { Check, RefreshCw, Zap, Sparkles, Utensils, Users } from "lucide-react";
+import { EcoHeroGuide } from "@/components/ui/EcoHeroGuide";
 
 export const Mission5FoodLab: React.FC = () => {
   const { setScreen, addScore, addHealth, completeMission } = useGame();
@@ -156,6 +157,21 @@ export const Mission5FoodLab: React.FC = () => {
           <span>Solved: {Object.keys(solvedFoods).length} / {FOOD_LAB_ITEMS.length}</span>
         </div>
       </div>
+
+      {/* Captain Eco Directive */}
+      <EcoHeroGuide
+        emotion="scientist"
+        missionName="Mission 5 Directive"
+        title="Microbial Fermentation & Food Biotechnology"
+        objective="Not all microorganisms cause decay or illness—many are beneficial heroes in our everyday nutrition! Match each food product with its microscopic fermenter and biological process."
+        steps={[
+          "Select the active food target: Yogurt, Bread, Cheese, or Vinegar.",
+          "Identify the exact microorganism responsible: Lactic Acid Bacteria, Yeast (Saccharomyces), or Penicillium mold.",
+          "Select the biochemical process: Lactic Acid Fermentation, Carbon Dioxide Gas Expansion, or Proteolytic Aging.",
+          "Both teams lock in secretly! Fastest correct team snags the +25⚡ Speed Bonus!"
+        ]}
+        proTip="Lactobacillus turns milk sugars into tangy yogurt; yeast breathes out CO2 bubbles to make bread fluffy; Penicillium molds give aged blue cheeses their distinctive flavor!"
+      />
 
       {/* Main Matching Lab */}
       <div className="clay-card p-6 sm:p-8 mb-6">

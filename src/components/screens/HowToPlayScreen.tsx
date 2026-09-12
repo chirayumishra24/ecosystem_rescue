@@ -3,6 +3,7 @@
 import React from "react";
 import { useGame } from "@/lib/gameStore";
 import { ArrowRight, ArrowLeft, BookOpen, Compass, Trophy, Zap, CheckCircle2, Heart } from "lucide-react";
+import { EcoHeroGuide } from "@/components/ui/EcoHeroGuide";
 
 export const HowToPlayScreen: React.FC = () => {
   const { setScreen, goBack, teams } = useGame();
@@ -54,6 +55,20 @@ export const HowToPlayScreen: React.FC = () => {
 
   return (
     <div className="max-w-5xl mx-auto px-4 py-8 sm:py-12 flex flex-col items-center">
+      {/* Captain Eco Academy Guide */}
+      <EcoHeroGuide
+        emotion="briefing"
+        missionName="Field Academy"
+        title="Classroom Rules of Engagement & Scoring"
+        objective="Master simultaneous two-team gameplay to maximize learning, maintain honest competition, and restore nature together."
+        steps={[
+          "Both teams deliberate quietly within your group without calling answers aloud.",
+          "Select answers privately on your team's designated console [LOCKED 🔒].",
+          "First team to correctly lock in earns a +25⚡ Speed Bonus!",
+          "Review scientific explanations together after each reveal to master key concepts."
+        ]}
+        proTip="No team can cheat by waiting—answers stay secret until both teams are locked in and revealed!"
+      />
       {/* Header */}
       <div className="text-center mb-8">
         <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full clay-pill bg-white border-2 border-white text-emerald-700 text-xs font-black uppercase tracking-wider mb-3 shadow-sm">

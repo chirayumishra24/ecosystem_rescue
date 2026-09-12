@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import { useGame } from "@/lib/gameStore";
 import { TeamId } from "@/lib/types";
 import { ArrowRight, ArrowLeft, CheckCircle2, Users, Compass, Shield, Sparkles } from "lucide-react";
+import { EcoHeroGuide } from "@/components/ui/EcoHeroGuide";
 
 export const TeamSelectScreen: React.FC = () => {
   const { setScreen, goBack, activeTeam, setActiveTeam } = useGame();
@@ -18,6 +19,19 @@ export const TeamSelectScreen: React.FC = () => {
 
   return (
     <div className="max-w-6xl mx-auto px-4 py-8 sm:py-12">
+      {/* Captain Eco Team Directive */}
+      <EcoHeroGuide
+        emotion="welcome"
+        missionName="Enlistment Directive"
+        title="Form Your Science Squads: Explorers vs Guardians"
+        objective="Divide your classroom into two collaborative science squads. Both teams will tackle all missions concurrently to earn Eco Energy and restore nature."
+        steps={[
+          "🔵 Team Explorers (The Wolves): Specialize in discovery, field investigation, and rapid diagnosis.",
+          "🟠 Team Guardians (The Tigers): Specialize in protection, system balance, and sustainable repair.",
+          "Both teams deliberate together in class and submit secret answers on their team's console."
+        ]}
+        proTip="Assign roles inside each team: a Chief Biologist, a Microscope Operator, a Scribe, and a Timekeeper!"
+      />
       {/* Title */}
       <div className="text-center mb-10">
         <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full clay-pill bg-white border-2 border-white text-emerald-700 text-xs font-black uppercase tracking-wider mb-3 shadow-sm">

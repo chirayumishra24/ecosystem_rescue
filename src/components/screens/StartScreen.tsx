@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import { useGame } from "@/lib/gameStore";
 import { ArrowRight, Sparkles, Compass, AlertTriangle, ShieldCheck } from "lucide-react";
+import { EcoHeroGuide } from "@/components/ui/EcoHeroGuide";
 
 export const StartScreen: React.FC = () => {
   const { setScreen } = useGame();
@@ -10,6 +11,21 @@ export const StartScreen: React.FC = () => {
 
   return (
     <div className="relative min-h-[calc(100vh-80px)] flex flex-col items-center justify-between p-4 sm:p-8 overflow-hidden select-none">
+      {/* Eco Hero Welcome Directive */}
+      <EcoHeroGuide
+        emotion="welcome"
+        missionName="Field Command Directive"
+        title="Welcome Recruits to Ecosystem Rescue Headquarters!"
+        objective="The ecosystem balance is critically damaged. Two rival environmental science teams—Team Explorers and Team Guardians—must investigate microscopic life, reconstruct food chains, solve decomposition mysteries, and restore planetary health!"
+        steps={[
+          "Enlist your classroom into Team Explorers (Blue) and Team Guardians (Orange).",
+          "Both teams compete simultaneously on every challenge with secret answer lock-in.",
+          "First team to correctly lock in answers claims a +25⚡ Speed Bonus!",
+          "Earn cumulative Eco Energy to restore the Biosphere Health to 100%!"
+        ]}
+        proTip="Deliberate quietly with your teammates—both teams play at the same time, so speed and accuracy win the cup!"
+        defaultExpanded={false}
+      />
       {/* Hero Header */}
       <div className="relative z-10 text-center max-w-4xl mx-auto pt-2 sm:pt-4">
         <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full clay-pill bg-white/90 border-2 border-white text-emerald-700 text-xs sm:text-sm font-black uppercase tracking-wider mb-4 shadow-sm">

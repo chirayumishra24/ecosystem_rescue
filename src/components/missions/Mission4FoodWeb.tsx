@@ -5,6 +5,7 @@ import { useGame } from "@/lib/gameStore";
 import { FeedbackModal } from "../ui/Modal";
 import { sound } from "@/lib/audio";
 import { RefreshCw, Check, Zap, AlertTriangle, ShieldAlert } from "lucide-react";
+import { EcoHeroGuide } from "@/components/ui/EcoHeroGuide";
 
 interface NodeItem {
   id: string;
@@ -161,6 +162,21 @@ export const Mission4FoodWeb: React.FC = () => {
           </button>
         </div>
       </div>
+
+      {/* Captain Eco Directive */}
+      <EcoHeroGuide
+        emotion="web"
+        missionName="Mission 4 Directive"
+        title="Biodiversity Food Web Construction & Keystone Stability"
+        objective="Unlike linear food chains, ecosystems rely on complex, interconnected food webs. If one prey species declines, predators adapt by eating alternative prey—unless keystone species collapse!"
+        steps={[
+          "Click an organism (prey/food source), then click another organism (predator) to draw a glowing feeding arrow.",
+          "Ensure primary producers (Plants) connect to herbivores (Insects, Rabbits, Mice).",
+          "Connect secondary consumers (Birds, Frogs, Snakes) up to the apex predator (Eagle).",
+          "Don't forget decomposers (Fungi and Bacteria) who recycle organic remains from all levels!"
+        ]}
+        proTip="The greater the number of interconnected feeding links, the more resilient the ecosystem is against disease and environmental disturbances!"
+      />
 
       {/* Main Interactive Canvas Area */}
       <div className="relative w-full aspect-[16/10] max-h-[520px] clay-inset rounded-3xl overflow-hidden p-4 sm:p-6 mb-6 bg-gradient-to-b from-sky-50/80 via-emerald-50/50 to-amber-50/60 border-2 border-emerald-200/60">

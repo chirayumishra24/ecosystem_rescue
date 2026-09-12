@@ -7,6 +7,7 @@ import { Organism } from "@/lib/types";
 import { FeedbackModal, TeamOutcome } from "../ui/Modal";
 import { sound } from "@/lib/audio";
 import { ArrowRight, Check, RefreshCw, Zap, AlertCircle, HelpCircle, Users } from "lucide-react";
+import { EcoHeroGuide } from "@/components/ui/EcoHeroGuide";
 
 export const Mission2FoodChain: React.FC = () => {
   const { setScreen, addScore, addHealth, completeMission } = useGame();
@@ -225,6 +226,37 @@ export const Mission2FoodChain: React.FC = () => {
           </button>
         )}
       </div>
+
+      {/* Captain Eco Directive */}
+      {phase === "BUILDER" ? (
+        <EcoHeroGuide
+          emotion="connect"
+          missionName="Mission 2 • Phase 1 Directive"
+          title="Trophic Energy Flow & Food Chain Construction"
+          objective="Sunlight powers life! Arrange organisms into the exact order in which solar biological energy travels: Sun → Primary Producer → Primary Consumer → Secondary Consumer → Apex Predator/Decomposer."
+          steps={[
+            "Switch between Team Explorers and Team Guardians to populate each team's rack.",
+            "Click organisms from the organism bank to assign them to their correct trophic positions.",
+            "Remember: Arrows point in the direction of energy flow (from who is eaten to who eats them!).",
+            "Fill all 4 slots and verify to trigger the energy animation and score points!"
+          ]}
+          proTip="Photosynthetic plants and phytoplankton are always at the start because they make food directly from sunlight!"
+        />
+      ) : (
+        <EcoHeroGuide
+          emotion="warning"
+          missionName="Mission 2 • Phase 2 Directive"
+          title="Ecosystem Disruption & What-If Simulations"
+          objective="When one species in a chain is eliminated, the balance collapses! Predict population explosions, starvation cascades, and habitat impacts."
+          steps={[
+            "Examine the affected organism and review the chain links.",
+            "Both teams deliberate quietly and select your ecological outcome prediction.",
+            "Lock in secretly on your team's console before the final reveal!",
+            "First team to lock in correctly earns a +25⚡ Speed Bonus!"
+          ]}
+          proTip="If primary consumers vanish, producers overgrow while predators starve. If predators vanish, herbivores overpopulate and strip the landscape bare!"
+        />
+      )}
 
       {phase === "BUILDER" ? (
         /* PHASE 1: Simultaneous Dual Team Food Chain Builder */
