@@ -112,6 +112,28 @@ body {
     inset -3px -3px 6px rgba(29, 78, 216, 0.4);
 }
 
+.clay-btn-sky {
+  background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%);
+  color: #ffffff;
+  border: 2px solid rgba(255, 255, 255, 0.4);
+  box-shadow: 
+    8px 12px 24px rgba(2, 132, 199, 0.35),
+    -4px -4px 10px rgba(255, 255, 255, 0.9),
+    inset 3px 3px 6px rgba(255, 255, 255, 0.5),
+    inset -3px -3px 6px rgba(3, 105, 161, 0.4);
+}
+
+.clay-btn-amber {
+  background: linear-gradient(135deg, #d97706 0%, #b45309 100%);
+  color: #ffffff;
+  border: 2px solid rgba(255, 255, 255, 0.4);
+  box-shadow: 
+    8px 12px 24px rgba(217, 119, 6, 0.35),
+    -4px -4px 10px rgba(255, 255, 255, 0.9),
+    inset 3px 3px 6px rgba(255, 255, 255, 0.5),
+    inset -3px -3px 6px rgba(180, 83, 9, 0.4);
+}
+
 .clay-btn-orange {
   background: linear-gradient(135deg, #f97316 0%, #ea580c 100%);
   color: #ffffff;
