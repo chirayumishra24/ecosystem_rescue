@@ -61,8 +61,8 @@ export const EcoHeroGuide: React.FC<EcoHeroGuideProps> = ({
   const imgSrc = emotionImages[emotion] || emotionImages.welcome;
 
   return (
-    <div className="w-full max-w-4xl mx-auto mb-6 transition-all duration-300">
-      <div className="clay-card p-4 sm:p-5 relative overflow-hidden border-2 border-emerald-200/80 bg-gradient-to-br from-emerald-50/70 via-white to-teal-50/50 shadow-[0_8px_24px_rgba(16,185,129,0.12)]">
+    <div className="w-full max-w-7xl 2xl:max-w-[1720px] mx-auto mb-6 transition-all duration-300">
+      <div className="clay-card p-4 sm:p-5 2xl:p-7 relative overflow-hidden border-2 border-emerald-200/80 bg-gradient-to-br from-emerald-50/70 via-white to-teal-50/50 shadow-[0_8px_24px_rgba(16,185,129,0.12)]">
         {/* Top bar header */}
         <div className="flex items-center justify-between gap-3">
           <div className="flex items-center gap-3">

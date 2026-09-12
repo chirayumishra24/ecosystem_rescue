@@ -182,7 +182,7 @@ export const MicroscopeCanvas: React.FC<MicroscopeVisualProps> = ({
   const lightIntensity = (light / 100) * 2.5 + 0.5;
 
   return (
-    <div className="relative w-64 h-64 sm:w-80 sm:h-80 mx-auto rounded-full overflow-hidden border-8 border-slate-700 bg-slate-950 shadow-2xl shadow-emerald-500/20 ring-4 ring-emerald-500/30">
+    <div className="relative w-56 h-56 sm:w-80 sm:h-80 2xl:w-[400px] 2xl:h-[400px] mx-auto rounded-full overflow-hidden border-4 sm:border-8 border-slate-700 bg-slate-950 shadow-2xl shadow-emerald-500/20 ring-4 ring-emerald-500/30">
       {/* Three.js Canvas */}
       <Canvas camera={{ position: [0, 0, 3], fov: 45 }}>
         <ambientLight intensity={lightIntensity * 0.6} />
@@ -200,8 +200,8 @@ export const MicroscopeCanvas: React.FC<MicroscopeVisualProps> = ({
         {/* Crosshairs */}
         <div className="w-full h-[1px] bg-emerald-500/20" />
         <div className="absolute h-full w-[1px] bg-emerald-500/20" />
-        <div className="w-48 h-48 rounded-full border border-emerald-500/30 border-dashed" />
-        <div className="w-28 h-28 rounded-full border border-emerald-500/20" />
+        <div className="w-36 h-36 sm:w-48 sm:h-48 2xl:w-64 2xl:h-64 rounded-full border border-emerald-500/30 border-dashed" />
+        <div className="w-20 h-20 sm:w-28 sm:h-28 2xl:w-36 2xl:h-36 rounded-full border border-emerald-500/20" />
       </div>
 
       {/* Vignette & Lens Glare */}
@@ -209,7 +209,7 @@ export const MicroscopeCanvas: React.FC<MicroscopeVisualProps> = ({
       <div className="absolute top-4 left-6 w-16 h-8 bg-white/10 rounded-full blur-md rotate-[-30deg] pointer-events-none" />
 
       {/* Magnification label */}
-      <div className="absolute bottom-3 left-1/2 -translate-x-1/2 bg-slate-900/90 text-emerald-400 border border-emerald-500/40 text-[10px] font-black uppercase px-2.5 py-0.5 rounded-full tracking-widest pointer-events-none shadow">
+      <div className="absolute bottom-2.5 sm:bottom-3 left-1/2 -translate-x-1/2 bg-slate-900/90 text-emerald-400 border border-emerald-500/40 text-[9px] sm:text-[10px] 2xl:text-xs font-black uppercase px-2 sm:px-2.5 py-0.5 rounded-full tracking-widest pointer-events-none shadow">
         1000× OIL IMMERSION
       </div>
     </div>
