@@ -16,14 +16,14 @@ const BiosphereScene = ({ health }: { health: number }) => {
   const t = Math.max(0, Math.min(1, (health - 20) / 80)); // 0 (damaged) to 1 (restored)
 
   const groundColor = useMemo(() => {
-    const c1 = new THREE.Color("#44403c"); // Dry dusty rock
-    const c2 = new THREE.Color("#15803d"); // Lush deep green
+    const c1 = new THREE.Color("#78716c"); // Warm dry stone/earth
+    const c2 = new THREE.Color("#16a34a"); // Lush vibrant green
     return c1.lerp(c2, t);
   }, [t]);
 
   const waterColor = useMemo(() => {
-    const c1 = new THREE.Color("#3f3f46"); // Murky sludge
-    const c2 = new THREE.Color("#06b6d4"); // Crystal turquoise water
+    const c1 = new THREE.Color("#94a3b8"); // Murky dry silt
+    const c2 = new THREE.Color("#06b6d4"); // Sparkling azure water
     return c1.lerp(c2, t);
   }, [t]);
 
@@ -106,7 +106,7 @@ const BiosphereScene = ({ health }: { health: number }) => {
           <mesh position={[0, 0.55, 0]} scale={[1, 1 + t * 0.5, 1]}>
             <coneGeometry args={[0.25, 0.55, 8]} />
             <meshStandardMaterial
-              color={t > 0.4 ? "#22c55e" : "#71717a"}
+              color={t > 0.4 ? "#22c55e" : "#a1a1aa"}
               roughness={0.6}
             />
           </mesh>
@@ -129,9 +129,9 @@ const BiosphereScene = ({ health }: { health: number }) => {
         </bufferGeometry>
         <pointsMaterial
           size={0.06}
-          color={t > 0.5 ? "#a7f3d0" : "#a1a1aa"}
+          color={t > 0.5 ? "#059669" : "#0284c7"}
           transparent
-          opacity={0.3 + t * 0.6}
+          opacity={0.35 + t * 0.45}
         />
       </points>
     </group>
@@ -140,37 +140,45 @@ const BiosphereScene = ({ health }: { health: number }) => {
 
 export const BiosphereCanvas: React.FC<BiosphereCanvasProps> = ({ health }) => {
   return (
-    <div className="relative w-full h-64 sm:h-80 md:h-96 rounded-2xl overflow-hidden bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950 border border-slate-700/60 shadow-inner">
+    <div
+      className={`relative w-full h-64 sm:h-80 md:h-96 rounded-2xl overflow-hidden border-2 border-white shadow-[0_8px_24px_rgba(15,23,42,0.06),inset_0_2px_8px_rgba(255,255,255,0.9)] transition-colors duration-700 ${
+        health < 50
+          ? "bg-gradient-to-b from-sky-100 via-amber-50/50 to-slate-100"
+          : health < 80
+          ? "bg-gradient-to-b from-sky-200/80 via-teal-50/60 to-emerald-50"
+          : "bg-gradient-to-b from-sky-200 via-cyan-100/70 to-emerald-100/80"
+      }`}
+    >
       <Canvas camera={{ position: [0, 1.8, 3.2], fov: 45 }}>
-        <ambientLight intensity={0.4 + (health / 100) * 0.8} />
+        <ambientLight intensity={1.2 + (health / 100) * 0.6} />
         <directionalLight
-          position={[3, 5, 2]}
-          intensity={0.8 + (health / 100) * 1.5}
-          color={health > 50 ? "#fef08a" : "#cbd5e1"}
+          position={[4, 6, 3]}
+          intensity={1.5 + (health / 100) * 0.8}
+          color={health > 50 ? "#fffbeb" : "#ffffff"}
         />
         <pointLight
-          position={[-3, -1, -2]}
-          intensity={0.3}
-          color={health > 60 ? "#10b981" : "#64748b"}
+          position={[-3, 2, -2]}
+          intensity={0.6}
+          color={health > 60 ? "#34d399" : "#93c5fd"}
         />
         <BiosphereScene health={health} />
       </Canvas>
 
       {/* Overlay Status Pill */}
-      <div className="absolute top-3 left-3 bg-slate-900/80 backdrop-blur-md px-3 py-1.5 rounded-xl border border-slate-700 text-xs font-bold text-slate-300 flex items-center gap-2 shadow">
+      <div className="absolute top-3 left-3 bg-white/90 backdrop-blur-md px-3.5 py-1.5 rounded-2xl border-2 border-white text-xs font-black text-slate-700 flex items-center gap-2 shadow-[0_4px_12px_rgba(15,23,42,0.08)]">
         <span
           className={`w-2.5 h-2.5 rounded-full ${
             health < 50
               ? "bg-rose-500 animate-pulse"
               : health < 80
-              ? "bg-amber-400"
-              : "bg-emerald-400 animate-ping"
+              ? "bg-amber-500"
+              : "bg-emerald-500 animate-ping"
           }`}
         />
         <span>Biosphere Health: {health}%</span>
       </div>
 
-      <div className="absolute bottom-3 right-3 text-[11px] text-slate-400 bg-slate-900/80 px-2.5 py-1 rounded-lg border border-slate-800">
+      <div className="absolute bottom-3 right-3 text-[11px] font-black text-slate-600 bg-white/90 backdrop-blur-md px-3 py-1 rounded-xl border-2 border-white shadow-[0_4px_12px_rgba(15,23,42,0.08)]">
         Interactive 3D Simulation
       </div>
     </div>
