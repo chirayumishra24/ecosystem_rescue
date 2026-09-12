@@ -2,7 +2,8 @@
 
 import React, { useState, useEffect } from "react";
 import { useGame } from "@/lib/gameStore";
-import { Shield, Sparkles, Volume2, VolumeX, Map, RefreshCw, Zap, ArrowLeft, Maximize, Minimize } from "lucide-react";
+import { Shield, Sparkles, Volume2, VolumeX, Map, RefreshCw, Zap, ArrowLeft, Maximize, Minimize, Pause, Play } from "lucide-react";
+import { TugOfWarBar } from "./TugOfWarBar";
 
 export const Navbar: React.FC = () => {
   const {
@@ -16,6 +17,8 @@ export const Navbar: React.FC = () => {
     teams,
     ecosystemHealth,
     scorePop,
+    isPaused,
+    togglePause,
     soundEnabled,
     toggleSound,
     resetGame,
@@ -208,14 +211,17 @@ export const Navbar: React.FC = () => {
             )}
           </button>
 
-          {/* VS Divider with quick switch */}
-          <button
-            onClick={switchTeam}
-            title="Switch Active Team Turn"
-            className="px-2 py-1 rounded-xl clay-card text-[10px] sm:text-[11px] 2xl:text-xs font-black text-slate-500 hover:text-slate-800 active:scale-95 transition"
-          >
-            ⇄ VS
-          </button>
+          {/* Live Smart Board Tug-of-War Momentum Bar */}
+          <div className="flex items-center gap-1.5">
+            <TugOfWarBar />
+            <button
+              onClick={switchTeam}
+              title="Toggle Active Team Turn (Smart Board)"
+              className="px-2 py-1 rounded-xl clay-card text-[10px] sm:text-[11px] 2xl:text-xs font-black text-slate-500 hover:text-slate-900 active:scale-95 transition touch-manipulation cursor-pointer"
+            >
+              ⇄
+            </button>
+          </div>
 
           {/* Team Guardians */}
           <button
@@ -292,6 +298,17 @@ export const Navbar: React.FC = () => {
 
           {/* Quick Actions */}
           <div className="flex items-center gap-1 sm:gap-1.5">
+            <button
+              onClick={togglePause}
+              title={isPaused ? "Resume Mission" : "Teacher Pause & Discuss Mode"}
+              className={`p-2 sm:p-2.5 2xl:p-3 rounded-2xl border-2 border-white shadow-[3px_4px_8px_rgba(15,23,42,0.06),inset_1px_1px_2px_rgba(255,255,255,0.9)] transition hover:scale-105 touch-manipulation cursor-pointer ${
+                isPaused
+                  ? "bg-amber-400 text-slate-900 animate-pulse"
+                  : "bg-white text-slate-700 hover:text-amber-600"
+              }`}
+            >
+              {isPaused ? <Play className="w-3.5 h-3.5 sm:w-4 sm:h-4 2xl:w-5 2xl:h-5 fill-current" /> : <Pause className="w-3.5 h-3.5 sm:w-4 sm:h-4 2xl:w-5 2xl:h-5" />}
+            </button>
             <button
               onClick={() => setScreen("MAP")}
               title="View Ecosystem Map"

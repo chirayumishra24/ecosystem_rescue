@@ -20,6 +20,8 @@ import { FinalResultsScreen } from "@/components/screens/FinalResultsScreen";
 import { LearningSummaryScreen } from "@/components/screens/LearningSummaryScreen";
 import { BackgroundDecorations } from "@/components/ui/BackgroundDecorations";
 import { TurnAnnouncement } from "@/components/ui/TurnAnnouncement";
+import { AmbientTurnGlow } from "@/components/ui/AmbientTurnGlow";
+import { TeacherHUD } from "@/components/ui/TeacherHUD";
 
 export default function Home() {
   const { currentScreen } = useGame();
@@ -68,7 +70,9 @@ export default function Home() {
   return (
     <main className="min-h-screen flex flex-col relative text-slate-800">
       <BackgroundDecorations />
+      <AmbientTurnGlow />
       <TurnAnnouncement />
+      <TeacherHUD />
       <div className="relative z-10 flex flex-col flex-1">
         <Navbar />
         <div className="flex-1 w-full">{renderScreen()}</div>

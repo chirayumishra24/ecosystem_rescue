@@ -22,6 +22,9 @@ export interface GameContextType {
   scorePop: { team: TeamId; amount: number; key: number } | null;
   turnAnnouncement: { team: TeamId; key: number } | null;
   showTurnAnnouncement: (team: TeamId) => void;
+  isPaused: boolean;
+  togglePause: () => void;
+  jumpToMission: (screen: ScreenType) => void;
   soundEnabled: boolean;
   toggleSound: () => void;
   resetGame: () => void;
@@ -61,7 +64,19 @@ export const GameProvider: React.FC<{ children: React.ReactNode }> = ({ children
   const [completedMissions, setCompletedMissions] = useState<number[]>([]);
   const [scorePop, setScorePop] = useState<{ team: TeamId; amount: number; key: number } | null>(null);
   const [turnAnnouncement, setTurnAnnouncement] = useState<{ team: TeamId; key: number } | null>(null);
+  const [isPaused, setIsPaused] = useState<boolean>(false);
   const [soundEnabled, setSoundEnabled] = useState<boolean>(true);
+
+  const togglePause = () => {
+    sound.playClick();
+    setIsPaused((prev) => !prev);
+  };
+
+  const jumpToMission = (screen: ScreenType) => {
+    sound.playClick();
+    setIsPaused(false);
+    setScreen(screen);
+  };
 
   useEffect(() => {
     sound.enabled = soundEnabled;
@@ -177,6 +192,7 @@ export const GameProvider: React.FC<{ children: React.ReactNode }> = ({ children
     setCurrentScreen("START");
     setScreenHistory([]);
     setActiveTeam("EXPLORERS");
+    setIsPaused(false);
   };
 
   return (
@@ -199,6 +215,9 @@ export const GameProvider: React.FC<{ children: React.ReactNode }> = ({ children
         scorePop,
         turnAnnouncement,
         showTurnAnnouncement,
+        isPaused,
+        togglePause,
+        jumpToMission,
         soundEnabled,
         toggleSound,
         resetGame,

@@ -6,7 +6,7 @@ import { MICROBE_SAMPLES } from "@/lib/questionsData";
 import { MicroscopeCanvas } from "../3d/MicroscopeCanvas";
 import { FeedbackModal, TeamOutcome } from "../ui/Modal";
 import { sound } from "@/lib/audio";
-import { Sliders, Sun, Search, Sparkles, Check, HelpCircle, ArrowRight, Zap, Users } from "lucide-react";
+import { Sliders, Sun, Search, Sparkles, Check, HelpCircle, ArrowRight, Zap, Users, Lock, ShieldCheck } from "lucide-react";
 import { EcoHeroGuide } from "@/components/ui/EcoHeroGuide";
 
 export const Mission1Microbe: React.FC = () => {
@@ -343,6 +343,16 @@ export const Mission1Microbe: React.FC = () => {
                 Select Classification:
               </div>
 
+              {explorerAnswer && (
+                <div className="mb-3 p-2.5 rounded-xl bg-sky-600 text-white flex items-center justify-between shadow-sm animate-in fade-in duration-200">
+                  <div className="flex items-center gap-1.5 text-xs font-black uppercase">
+                    <ShieldCheck className="w-4 h-4 text-sky-200" />
+                    <span>Team A Choice Shielded & Locked</span>
+                  </div>
+                  <span className="text-[10px] font-bold text-sky-100">Tap button to change</span>
+                </div>
+              )}
+
               <div className="grid grid-cols-2 gap-2.5 sm:gap-3.5 2xl:gap-5">
                 {(["Bacteria", "Fungi", "Protozoa", "Algae"] as const).map((choice) => (
                   <button
@@ -354,7 +364,15 @@ export const Mission1Microbe: React.FC = () => {
                         : "clay-card bg-white hover:bg-sky-50/50 text-slate-700 border-2 border-white hover:border-sky-200"
                     }`}
                   >
-                    <span>{choice}</span>
+                    <div className="flex items-center gap-1.5">
+                      <span>{choice}</span>
+                      {explorerAnswer === choice && (
+                        <span className="text-[9px] sm:text-[10px] bg-sky-700 text-sky-100 px-1.5 py-0.5 rounded font-black flex items-center gap-0.5">
+                          <Lock className="w-2.5 h-2.5" />
+                          <span>LOCKED</span>
+                        </span>
+                      )}
+                    </div>
                     <span className="text-lg sm:text-xl 2xl:text-3xl flex-shrink-0">
                       {choice === "Bacteria" && "🦠"}
                       {choice === "Fungi" && "🍄"}
@@ -411,6 +429,16 @@ export const Mission1Microbe: React.FC = () => {
                 Select Classification:
               </div>
 
+              {guardianAnswer && (
+                <div className="mb-3 p-2.5 rounded-xl bg-orange-600 text-white flex items-center justify-between shadow-sm animate-in fade-in duration-200">
+                  <div className="flex items-center gap-1.5 text-xs font-black uppercase">
+                    <ShieldCheck className="w-4 h-4 text-orange-200" />
+                    <span>Team B Choice Shielded & Locked</span>
+                  </div>
+                  <span className="text-[10px] font-bold text-orange-100">Tap button to change</span>
+                </div>
+              )}
+
               <div className="grid grid-cols-2 gap-2.5 sm:gap-3.5 2xl:gap-5">
                 {(["Bacteria", "Fungi", "Protozoa", "Algae"] as const).map((choice) => (
                   <button
@@ -422,7 +450,15 @@ export const Mission1Microbe: React.FC = () => {
                         : "clay-card bg-white hover:bg-amber-50/50 text-slate-700 border-2 border-white hover:border-amber-200"
                     }`}
                   >
-                    <span>{choice}</span>
+                    <div className="flex items-center gap-1.5">
+                      <span>{choice}</span>
+                      {guardianAnswer === choice && (
+                        <span className="text-[9px] sm:text-[10px] bg-orange-700 text-orange-100 px-1.5 py-0.5 rounded font-black flex items-center gap-0.5">
+                          <Lock className="w-2.5 h-2.5" />
+                          <span>LOCKED</span>
+                        </span>
+                      )}
+                    </div>
                     <span className="text-lg sm:text-xl 2xl:text-3xl flex-shrink-0">
                       {choice === "Bacteria" && "🦠"}
                       {choice === "Fungi" && "🍄"}
